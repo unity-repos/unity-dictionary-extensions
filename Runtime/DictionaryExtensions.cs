@@ -1,35 +1,37 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
-public static class DictionaryExtensions
+namespace Runtime
 {
-    public static void Set<TK, TV>(this Dictionary<TK, TV> dict, TK key, TV value)
+    public static class DictionaryExtensions
     {
-        if (dict == null)
+        public static void Set<TK, TV>(this Dictionary<TK, TV> dict, TK key, TV value)
         {
-            return;
+            if (dict == null)
+            {
+                return;
+            }
+
+            if (!dict.ContainsKey(key))
+            {
+                dict.Add(key, value);
+            }
+            else
+            {
+                dict[key] = value;
+            }
         }
 
-        if (!dict.ContainsKey(key))
+        public static bool TryGet<TK, TV>(this Dictionary<TK, TV> dict, TK key, out TV value)
         {
-            dict.Add(key, value);
-        }
-        else
-        {
-            dict[key] = value;
-        }
-    }
+            value = default;
+            if (dict == null || !dict.ContainsKey(key))
+            {
+                return false;
+            }
 
-    public static bool TryGet<TK, TV>(this Dictionary<TK, TV> dict, TK key, out TV value)
-    {
-        value = default;
-        if (dict == null || !dict.ContainsKey(key))
-        {
-            return false;
+            value = dict[key];
+
+            return true;
         }
-
-        value = dict[key];
-
-        return true;
     }
 }
