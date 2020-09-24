@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Runtime
+namespace EcsExtensions.Runtime
 {
     public static class DictionaryExtensions
     {
