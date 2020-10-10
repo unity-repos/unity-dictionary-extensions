@@ -33,5 +33,16 @@ namespace EcsExtensions.Runtime
 
             return true;
         }
+
+        public static TV Get<TK, TV>(this Dictionary<TK, TV> dict, TK key, out TV value)
+        {
+            value = default;
+            if (dict == null || !dict.ContainsKey(key))
+            {
+                return default;
+            }
+
+            return dict[key];
+        }
     }
 }
