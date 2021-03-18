@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace EcsExtensions.Runtime
+namespace DictionaryExtensions
 {
     public static class DictionaryExtensions
     {
-        public static void Set<TK, TV>(this Dictionary<TK, TV> dict, TK key, TV value)
+        public static void Set<TK, TV>(this IDictionary<TK, TV> dict, TK key, TV value)
         {
             if (dict == null)
             {
@@ -21,7 +21,7 @@ namespace EcsExtensions.Runtime
             }
         }
 
-        public static bool TryGet<TK, TV>(this Dictionary<TK, TV> dict, TK key, out TV value)
+        public static bool TryGet<TK, TV>(this IDictionary<TK, TV> dict, TK key, out TV value)
         {
             value = default;
             if (dict == null || !dict.ContainsKey(key))
@@ -34,7 +34,7 @@ namespace EcsExtensions.Runtime
             return true;
         }
 
-        public static TV Get<TK, TV>(this Dictionary<TK, TV> dict, TK key)
+        public static TV Get<TK, TV>(this IDictionary<TK, TV> dict, TK key)
         {
             if (dict == null || !dict.ContainsKey(key))
             {
